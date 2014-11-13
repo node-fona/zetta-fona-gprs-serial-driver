@@ -1,24 +1,25 @@
 var Scout = require('zetta-scout');
 var util = require('util');
-var FonaSMS = require('./fona_sms');
+var FonaGPRS = require('./fona_gprs');
 
-var FonaSMSScout = module.exports = function() {
+var FonaGPRSScout = module.exports = function() {
   Scout.call(this);
+  this.apn = arguments[0];
 };
-util.inherits(FonaSMSScout, Scout);
+util.inherits(FonaGPRSScout, Scout);
 
-FonaSMSScout.prototype.init = function(next) {
-  var fonaSMSQuery = this.server.where({type: 'fona-sms'});
+FonaGPRSScout.prototype.init = function(next) {
+  var FonaGPRSQuery = this.server.where({type: 'fona-gprs'});
   var serialDeviceQuery = this.server.where({ type: 'serial' });
   
   var self = this;
 
   this.server.observe(serialDeviceQuery, function(serialDevice) {
-    self.server.find(fonaSMSQuery, function(err, results) {
+    self.server.find(FonaGPRSQuery, function(err, results) {
       if (results[0]) {
-        self.provision(results[0], FonaSMS, serialDevice);
+        self.provision(results[0], FonaGPRS, serialDevice, self.apn);
       } else {
-        self.discover(FonaSMS, serialDevice);
+        self.discover(FonaGPRS, serialDevice, self.apn);
       }
       next();
     });

@@ -1,7 +1,7 @@
 {
-  "name": "zetta-fona-sms-serial-driver",
+  "name": "zetta-fona-gprs-serial-driver",
   "version": "0.1.2",
-  "description": "Zetta FONA SMS serial device driver",
+  "description": "Zetta FONA GPRS serial device driver",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,7 +18,7 @@
   "keywords": [
     "zetta",
     "fona",
-    "sms",
+    "gprs",
     "serial"
   ]
 }

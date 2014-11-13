@@ -1,8 +1,8 @@
 var zetta = require('zetta');
 var SerialDevice = require('zetta-serial-device-driver');
-var FonaSMS = require('../index');
+var FonaGPRS = require('../index');
 
 zetta()
   .use(SerialDevice, '/dev/cu.usbserial')
-  .use(FonaSMS)
+  .use(FonaGPRS, 'epc.tmobile.com')
   .listen(1337);
